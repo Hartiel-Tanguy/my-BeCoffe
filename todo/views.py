@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 ## import todo form and models
 
 from .forms import TodoForm
 from .models import Todo
 
-
+@login_required(login_url='acces')
 def index(request):
 
 	item_list = Todo.objects.order_by("-date")
