@@ -1,0 +1,11 @@
+<h1>inscription<h1>
+
+<form method="post" action="">
+    {% for champ in form %}
+    {{champ.label}}
+    {{ champ }}
+    {% endfor %}
+    {% csrf_token %}
+    <input type="submit" nom ="inscription" value="envoyer">
+</form>
+<p> avez vous deja un compte? <a href ="{% url 'acces' %}">cliquez ici</a></p>
