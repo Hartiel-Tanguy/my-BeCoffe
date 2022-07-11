@@ -29,7 +29,7 @@ def accesPage(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('/hello/')
+            return redirect('/')
         else:
             messages.info(request, 'Identifiant ou mot de passe incorrect')
     return render(request, 'compte/acces.html', context)
