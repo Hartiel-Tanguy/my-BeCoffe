@@ -18,9 +18,12 @@ from django.urls import path
 from django.conf.urls import include
 from compte import views
 
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('compte/', include('compte.urls')),
     path('hello/', views.hello, name='hello'),
+    path('todo/', include('todo.urls')),
 ]
 
