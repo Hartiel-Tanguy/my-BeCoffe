@@ -26,8 +26,15 @@ def index(request):
 	return render(request, 'todo/index.html', page)
 
 
+#def remove(request, item_id):
+#	item = Todo.objects.get(id=item_id)
+#	item.delete()
+#	messages.info(request, "item removed !!!")
+#	return redirect('todo')
+
 def remove(request, item_id):
 	item = Todo.objects.get(id=item_id)
-	item.delete()
-	messages.info(request, "item removed !!!")
-	return redirect('todo')
+	if request.method == "POST":
+		item.delete()
+		return redirect('todo')
+	return render(request,'todo/index.html')
