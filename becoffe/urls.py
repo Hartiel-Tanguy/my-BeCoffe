@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 from compte import views
+from ping import views as ping_views
 
 
 
@@ -25,5 +26,7 @@ urlpatterns = [
     path('compte/', include('compte.urls')),
     path('', views.hello, name='hello'),
     path('todo/', include('todo.urls')),
+    path('ping', ping_views.ping),
+    path('soir', ping_views.soir)
 ]
 

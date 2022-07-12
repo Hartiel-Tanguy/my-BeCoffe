@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'compte',
     'todo',
     'crispy_forms',
+    'ping',
 ]
 
 MIDDLEWARE = [
