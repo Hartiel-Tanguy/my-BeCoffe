@@ -6,6 +6,12 @@
 <div>
     <button> <a href="{% url 'quitter' %}"> quitter </a> </button>
 </div>
+{%if user.chef%}
+<div>
+    <button> <a href="{% url 'chef' %}"> chef </a> </button>
+{%endif%}
+{%if not user.chef%}
+
 <div>
     <form action ="/ping" method="post">
        {%csrf_token%}
@@ -15,3 +21,4 @@
        {%csrf_token%}
         <button type="submit" name="soir"> soir </button>
 </div>
+{%endif%}

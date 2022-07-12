@@ -2,6 +2,7 @@ from datetime import datetime
 from django.shortcuts import render, redirect
 from requests import request
 from ping.models import presence
+from compte.models import users
 
 
 # Create your views here.
@@ -24,3 +25,8 @@ def soir(request):
             arr.save()
         return redirect('hello')
     
+
+def chef(request):
+    presenceChef = presence.objects.all().order_by('date')#(merci emre)
+    context = {'presenceChef': presenceChef}
+    return render(request, 'compte/chef.html', context)

@@ -1,0 +1,15 @@
+<h1>présence</h1>
+
+{%for i in presenceChef%}
+<p>{{i.date}}<p>
+<p>{{i.matin}}<p>
+<p>{{i.soir}}</p>
+<p class="ligne">{{i.user}}</p>
+
+{%endfor%}
+<style>
+.ligne{
+    border-bottom: 1px solid black;
+}
+
+</style>

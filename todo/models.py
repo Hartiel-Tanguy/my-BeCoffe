@@ -7,7 +7,7 @@ class Todo(models.Model):
 	user = models.ForeignKey(users, on_delete=models.CASCADE)
 	title=models.CharField(max_length=100)
 	details=models.TextField()
-	date=models.DateTimeField(default=timezone.now)
+	date=models.DateField(default=timezone.now, unique=True)
 
 	def __str__(self):
 		return self.title

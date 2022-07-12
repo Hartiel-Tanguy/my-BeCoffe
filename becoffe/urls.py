@@ -27,6 +27,7 @@ urlpatterns = [
     path('', views.hello, name='hello'),
     path('todo/', include('todo.urls')),
     path('ping', ping_views.ping),
-    path('soir', ping_views.soir)
+    path('soir', ping_views.soir),
+    path('chef', ping_views.chef, name='chef'),
 ]
 
