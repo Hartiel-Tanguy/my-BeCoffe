@@ -3,6 +3,9 @@ from django.shortcuts import render, redirect
 from requests import request
 from ping.models import presence
 from compte.models import users
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+
 
 
 # Create your views here.
@@ -19,12 +22,18 @@ def ping(request):
 def soir(request):
     if request.method == 'POST':
         date = datetime.now()
-        arr = presence.objects.get(date=date, user=request.user)
+        arr = presence.objects.get(date=date, user=request.user,)
         if arr:
             arr.soir = date
             arr.save()
-        return redirect('hello')
+            return redirect('hello')
+        else:
+            messages.error(request, "vous n'etes pas connecté")
+            return redirect('hello')
+
+        
     
+@login_required(login_url='acces')
 
 def chef(request):
     presenceChef = presence.objects.all().order_by('date')#(merci emre)

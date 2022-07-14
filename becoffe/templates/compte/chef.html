@@ -1,15 +1,37 @@
+<button> <a href="{% url 'hello' %}"> revenir </a> </button>
+
 <h1>présence</h1>
 
 {%for i in presenceChef%}
-<p>{{i.date}}<p>
-<p>{{i.matin}}<p>
-<p>{{i.soir}}</p>
-<p class="ligne">{{i.user}}</p>
+<table>
+    <tread>
+        <tr>
+            <th class="tit">{{i.user}}</th>
+        </tr>
+    </tread>
+    <tbody>
+        <tr>
+            <td>{{i.date}}</td>
+            <td>{{i.matin}}</td>
+            <td>{{i.soir}}</td>
+        </tr>
+</table>
+<style>
+    table{
+        text-align: center;
+    }
+    table,
+    td{
+        border : 1px solid 
+    }
+    thread{
+        background-color : #ccc;
+    
+    }
+    body{
+        text-align : center;
+
+    }
+</style>
 
 {%endfor%}
-<style>
-.ligne{
-    border-bottom: 1px solid black;
-}
-
-</style>

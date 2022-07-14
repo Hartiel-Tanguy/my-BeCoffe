@@ -4,6 +4,11 @@
     <button> <a href="{% url 'todo' %}"> todo </a> </button>
 </div>
 <div>
+    {%if user.is_authenticated%}
+    <button> <a href="{% url 'profile' user.id %}"> profile </a> </button>
+    {%endif%}
+</div>
+<div>
     <button> <a href="{% url 'quitter' %}"> quitter </a> </button>
 </div>
 {%if user.chef%}

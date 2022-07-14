@@ -18,6 +18,7 @@ from django.urls import path
 from django.conf.urls import include
 from compte import views
 from ping import views as ping_views
+from compte import views as compte_views
 
 
 
@@ -29,5 +30,6 @@ urlpatterns = [
     path('ping', ping_views.ping),
     path('soir', ping_views.soir),
     path('chef', ping_views.chef, name='chef'),
+    path('profile/<int:id>', compte_views.index_profile, name='profile'),
 ]
 

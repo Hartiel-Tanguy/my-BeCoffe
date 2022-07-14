@@ -1,0 +1,32 @@
+
+<form method="post" action="">
+    {% for champ in form %}
+    {{champ.label}}
+    {{ champ }}
+    {% endfor %}
+    {% csrf_token %}
+    <input type="submit" nom ="inscription" value="envoyer">
+</form>
+    {%for r in presencess%}
+        <table>
+            <tr>
+                <td>{{r.date}}</td>
+                <td>{{r.matin}}</td>
+                <td>{{r.soir}}</td>
+            </tr>
+        </table>
+    {%endfor%}
+    <style>
+        table{
+            text-align: center;
+        }
+        table,
+        td{
+            border : 1px solid 
+        }
+        thread{
+            background-color : #ccc;
+        
+        }
+        
+    </style>

@@ -1,3 +1,4 @@
+from atexit import register
 from multiprocessing import context
 from django.shortcuts import render , redirect
 from django.contrib.auth.forms import UserCreationForm
@@ -6,6 +7,9 @@ from django.contrib.auth import authenticate, login , logout
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from compte.models import users
+from ping.models import presence
+
 
 
 
@@ -43,3 +47,22 @@ def logoutUser(request):
 @login_required(login_url='acces')
 def hello(request):
     return render(request, 'compte/hello.html',)
+
+
+
+def index_profile(request,id):
+    userr = users.objects.get(id=id)
+    form = creerUtilisateur(instance=userr)
+    presencess = presence.objects.filter(user=id)
+    
+    if request.method == 'POST':
+        form = creerUtilisateur(request.POST, instance=userr)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+        else:
+            messages.success(request, "non d'utilisateur deja utilisé ou mot de passe tros court")
+    return render(request, 'compte/index_profile.html', {'form': form, 'userr':userr ,'presencess': presencess})
+    
+
+    
