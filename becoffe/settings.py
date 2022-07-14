@@ -11,7 +11,10 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 import os
+import environ
 from pathlib import Path
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,12 +24,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ugo(7&qsy%obkj%p9hqz9k!kl^1zoykx$&wxxjz-9f@4l4d#qr'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+import django_heroku
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['becoffee.herokuapp.com', 'localhost']
 
 
 # Application definition
@@ -54,6 +58,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+django_heroku.settings(locals())
 ROOT_URLCONF = 'becoffe.urls'
 
 TEMPLATES = [
@@ -78,12 +83,28 @@ WSGI_APPLICATION = 'becoffe.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': env('POSTGRES_DB_NAME'),
+        'USER': env('POSTGRES_USER'),
+        'PASSWORD': env('POSTGRES_PASSWORD'),
+        'HOST': env('POSTGRES_HOST'),
+        'PORT': env('POSTGRES_PORT'),
     }
 }
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#        'NAME': env('DB_NAME'),
+#        'USER': env('DB_USER'),
+#        'PASSWORD': env('DB_USER_PASSWORD'),
+#        'HOST': env('DB_HOST'),
+#        'PORT': '5432',
+#    }
+#}
+
 
 
 # Password validation
